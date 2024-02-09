@@ -15,25 +15,39 @@ int main() {
   int nums[150];
   int i = 0;
 //Inputs the numbers from the file into an array
-  while (!inFile.eof()) {
-    i++;
-    int number = 0;
-    string line;
+  /*while (!inFile.eof()) {
+    
+   
     getline(inFile, line, ' ');
-    istringstream inSS(line); {
+     
     inSS >> number;
     nums[i] = number;
-    cout << nums[i] <<"-" << i << endl;
+    i++;
+    
    // Keeps track of the index of the array
+    }*/
+  string line, numstring;
+  
+  //getline(inFile,line);
+  while (inFile.good()){
+    int number = 0;
+    getline(inFile, line);
+    istringstream inSS(line);
+    while (getline(inSS, numstring, ' ')){
+      inSS >> number;
+      nums[i] = number;
+      cout << nums[i] << endl;
+      i++;
     }
-     
   }
+    i--;
+  
   inFile.close();
    
 
-  int testnum = 10;
+  int testnum = 15;
   int index = int_is_present(nums, testnum);
-  if (index != -1){
+  if (index != -1) {
     cout << testnum << " is at index " << index << endl;
   }
   else {
@@ -46,7 +60,7 @@ int main() {
 
   add_value(nums, 888, i);
   i++;
-  cout << "Added value: " << nums[i] << " at index" << i << endl;
+  cout << "Added value: " << nums[i] << " at index " << i << endl;
   i++;
   
   /*for (int j = 0; j < i; j++){
